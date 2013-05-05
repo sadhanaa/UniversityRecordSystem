@@ -1,0 +1,166 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServiceService WSDL service -->
+
+  <service name="Service" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://connection"/>
+      <parameter name="wsdlServiceElement" value="ServiceService"/>
+      <parameter name="schemaQualified" value="http://entity,http://connection"/>
+      <parameter name="wsdlServicePort" value="Service"/>
+      <parameter name="className" value="connection.ServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Service"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="unenrollStudent" qname="operNS:unenrollStudent" xmlns:operNS="http://connection" returnQName="retNS:unenrollStudentReturn" xmlns:retNS="http://connection" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idperson" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idcourse" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="enrollStudent" qname="operNS:enrollStudent" xmlns:operNS="http://connection" returnQName="retNS:enrollStudentReturn" xmlns:retNS="http://connection" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idperson" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idcourse" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAdminUname" qname="operNS:getAdminUname" xmlns:operNS="http://connection" returnQName="retNS:getAdminUnameReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="viewAllCourse" qname="operNS:viewAllCourse" xmlns:operNS="http://connection" returnQName="retNS:viewAllCourseReturn" xmlns:retNS="http://connection" returnType="rtns:Course" xmlns:rtns="http://entity" soapAction="" >
+      </operation>
+      <operation name="removeReplaceInstructor" qname="operNS:removeReplaceInstructor" xmlns:operNS="http://connection" returnQName="retNS:removeReplaceInstructorReturn" xmlns:retNS="http://connection" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:removeInsructor" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:replaceInstructor" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idcourse" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="assignCourseToInstructor" qname="operNS:assignCourseToInstructor" xmlns:operNS="http://connection" returnQName="retNS:assignCourseToInstructorReturn" xmlns:retNS="http://connection" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idperson" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idcourse" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="deleteInstructor" qname="operNS:deleteInstructor" xmlns:operNS="http://connection" returnQName="retNS:deleteInstructorReturn" xmlns:retNS="http://connection" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idperson" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="createInstructor" qname="operNS:createInstructor" xmlns:operNS="http://connection" returnQName="retNS:createInstructorReturn" xmlns:retNS="http://connection" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:pass" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fname" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lname" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:city" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:state" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:zipcode" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:persontype" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:department" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:officeHr" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:location" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="createStudent" qname="operNS:createStudent" xmlns:operNS="http://connection" returnQName="retNS:createStudentReturn" xmlns:retNS="http://connection" returnType="rtns:long" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:pass" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fname" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lname" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:city" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:state" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:zipcode" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:persontype" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="deleteStudent" qname="operNS:deleteStudent" xmlns:operNS="http://connection" returnQName="retNS:deleteStudentReturn" xmlns:retNS="http://connection" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idperson" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAdminPass" qname="operNS:getAdminPass" xmlns:operNS="http://connection" returnQName="retNS:getAdminPassReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="personDetail" qname="operNS:personDetail" xmlns:operNS="http://connection" returnQName="retNS:personDetailReturn" xmlns:retNS="http://connection" returnType="rtns:Person" xmlns:rtns="http://entity" soapAction="" >
+        <parameter qname="pns:idperson" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="updatePerson" qname="operNS:updatePerson" xmlns:operNS="http://connection" returnQName="retNS:updatePersonReturn" xmlns:retNS="http://connection" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idperson" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pass" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fname" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lname" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:address" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:city" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:state" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:zipcode" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:persontype" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:department" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:officeHr" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:location" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="courseDetail" qname="operNS:courseDetail" xmlns:operNS="http://connection" returnQName="retNS:courseDetailReturn" xmlns:retNS="http://connection" returnType="rtns:Course" xmlns:rtns="http://entity" soapAction="" >
+        <parameter qname="pns:idcourse" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="updateCourse" qname="operNS:updateCourse" xmlns:operNS="http://connection" returnQName="retNS:updateCourseReturn" xmlns:retNS="http://connection" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idcourse" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:name" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:section" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:hours" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:loc" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="deleteCourse" qname="operNS:deleteCourse" xmlns:operNS="http://connection" returnQName="retNS:deleteCourseReturn" xmlns:retNS="http://connection" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idcourse" xmlns:pns="http://connection" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="createCourse" qname="operNS:createCourse" xmlns:operNS="http://connection" returnQName="retNS:createCourseReturn" xmlns:retNS="http://connection" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:section" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:hours" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:loc" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="searchPerson" qname="operNS:searchPerson" xmlns:operNS="http://connection" returnQName="retNS:searchPersonReturn" xmlns:retNS="http://connection" returnType="rtns:Person" xmlns:rtns="http://entity" soapAction="" >
+        <parameter qname="pns:attributeName" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:attributeValue" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="searchCourse" qname="operNS:searchCourse" xmlns:operNS="http://connection" returnQName="retNS:searchCourseReturn" xmlns:retNS="http://connection" returnType="rtns:Course" xmlns:rtns="http://entity" soapAction="" >
+        <parameter qname="pns:attributeName" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:attributeValue" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="viewAllInstructors" qname="operNS:viewAllInstructors" xmlns:operNS="http://connection" returnQName="retNS:viewAllInstructorsReturn" xmlns:retNS="http://connection" returnType="rtns:Instructor" xmlns:rtns="http://entity" soapAction="" >
+      </operation>
+      <operation name="viewAllPerson" qname="operNS:viewAllPerson" xmlns:operNS="http://connection" returnQName="retNS:viewAllPersonReturn" xmlns:retNS="http://connection" returnType="rtns:Person" xmlns:rtns="http://entity" soapAction="" >
+      </operation>
+      <operation name="viewAllStudents" qname="operNS:viewAllStudents" xmlns:operNS="http://connection" returnQName="retNS:viewAllStudentsReturn" xmlns:retNS="http://connection" returnType="rtns:Person" xmlns:rtns="http://entity" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="deleteCourse viewAllPerson createCourse deleteInstructor createStudent personDetail searchCourse courseDetail deleteStudent updateCourse viewAllStudents updatePerson createInstructor assignCourseToInstructor getAdminPass viewAllInstructors unenrollStudent getAdminUname viewAllCourse removeReplaceInstructor searchPerson enrollStudent"/>
+
+      <typeMapping
+        xmlns:ns="http://entity"
+        qname="ns:Course"
+        type="java:entity.Course"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://entity"
+        qname="ns:Person"
+        type="java:entity.Person"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://connection"
+        qname="ns:ArrayOf_tns1_Instructor"
+        type="java:entity.Instructor[]"
+        innerType="cmp-ns:Instructor" xmlns:cmp-ns="http://entity"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://connection"
+        qname="ns:ArrayOf_tns1_Person"
+        type="java:entity.Person[]"
+        innerType="cmp-ns:Person" xmlns:cmp-ns="http://entity"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://entity"
+        qname="ns:Instructor"
+        type="java:entity.Instructor"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

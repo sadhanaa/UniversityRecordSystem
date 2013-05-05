@@ -1,0 +1,163 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\atuser\Desktop\SJSU SE study\273 Enterprise Distributed System\273 Labs Projects\Trupti Class Project 273\ProjectWorkSpaceTrupti\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\UniversityRecordSystem_Trupti\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:service name="Service" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="unenrollStudent" qname="ns1:unenrollStudent" returnQName="ns1:unenrollStudentReturn" returnType="xsd:boolean" soapAction="" xmlns:ns1="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:idperson" type="xsd:long"/>
+   <ns2:parameter qname="ns1:idcourse" type="xsd:long"/>
+  </ns2:operation>
+  <ns1:operation name="enrollStudent" qname="ns2:enrollStudent" returnQName="ns2:enrollStudentReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:idperson" type="xsd:long"/>
+   <ns1:parameter qname="ns2:idcourse" type="xsd:long"/>
+  </ns1:operation>
+  <ns1:operation name="getAdminUname" qname="ns3:getAdminUname" returnQName="ns3:getAdminUnameReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="viewAllCourse" qname="ns4:viewAllCourse" returnQName="ns4:viewAllCourseReturn" returnType="ns5:Course" soapAction="" xmlns:ns4="http://connection" xmlns:ns5="http://entity"/>
+  <ns1:operation name="removeReplaceInstructor" qname="ns6:removeReplaceInstructor" returnQName="ns6:removeReplaceInstructorReturn" returnType="xsd:boolean" soapAction="" xmlns:ns6="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:removeInsructor" type="xsd:long"/>
+   <ns1:parameter qname="ns6:replaceInstructor" type="xsd:long"/>
+   <ns1:parameter qname="ns6:idcourse" type="xsd:long"/>
+  </ns1:operation>
+  <ns1:operation name="assignCourseToInstructor" qname="ns7:assignCourseToInstructor" returnQName="ns7:assignCourseToInstructorReturn" returnType="xsd:boolean" soapAction="" xmlns:ns7="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:idperson" type="xsd:long"/>
+   <ns1:parameter qname="ns7:idcourse" type="xsd:long"/>
+  </ns1:operation>
+  <ns1:operation name="deleteInstructor" qname="ns8:deleteInstructor" returnQName="ns8:deleteInstructorReturn" returnType="xsd:boolean" soapAction="" xmlns:ns8="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:idperson" type="xsd:long"/>
+  </ns1:operation>
+  <ns1:operation name="createInstructor" qname="ns9:createInstructor" returnQName="ns9:createInstructorReturn" returnType="xsd:boolean" soapAction="" xmlns:ns9="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:pass" type="xsd:string"/>
+   <ns1:parameter qname="ns9:fname" type="xsd:string"/>
+   <ns1:parameter qname="ns9:lname" type="xsd:string"/>
+   <ns1:parameter qname="ns9:address" type="xsd:string"/>
+   <ns1:parameter qname="ns9:city" type="xsd:string"/>
+   <ns1:parameter qname="ns9:state" type="xsd:string"/>
+   <ns1:parameter qname="ns9:zipcode" type="xsd:string"/>
+   <ns1:parameter qname="ns9:persontype" type="xsd:string"/>
+   <ns1:parameter qname="ns9:department" type="xsd:string"/>
+   <ns1:parameter qname="ns9:officeHr" type="xsd:string"/>
+   <ns1:parameter qname="ns9:location" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="createStudent" qname="ns10:createStudent" returnQName="ns10:createStudentReturn" returnType="xsd:long" soapAction="" xmlns:ns10="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:pass" type="xsd:string"/>
+   <ns1:parameter qname="ns10:fname" type="xsd:string"/>
+   <ns1:parameter qname="ns10:lname" type="xsd:string"/>
+   <ns1:parameter qname="ns10:address" type="xsd:string"/>
+   <ns1:parameter qname="ns10:city" type="xsd:string"/>
+   <ns1:parameter qname="ns10:state" type="xsd:string"/>
+   <ns1:parameter qname="ns10:zipcode" type="xsd:string"/>
+   <ns1:parameter qname="ns10:persontype" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="deleteStudent" qname="ns11:deleteStudent" returnQName="ns11:deleteStudentReturn" returnType="xsd:boolean" soapAction="" xmlns:ns11="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:idperson" type="xsd:long"/>
+  </ns1:operation>
+  <ns1:operation name="getAdminPass" qname="ns12:getAdminPass" returnQName="ns12:getAdminPassReturn" returnType="xsd:string" soapAction="" xmlns:ns12="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="personDetail" qname="ns13:personDetail" returnQName="ns13:personDetailReturn" returnType="ns14:Person" soapAction="" xmlns:ns13="http://connection" xmlns:ns14="http://entity">
+   <ns1:parameter qname="ns13:idperson" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="updatePerson" qname="ns15:updatePerson" returnQName="ns15:updatePersonReturn" returnType="xsd:boolean" soapAction="" xmlns:ns15="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns15:idperson" type="xsd:long"/>
+   <ns1:parameter qname="ns15:pass" type="xsd:string"/>
+   <ns1:parameter qname="ns15:fname" type="xsd:string"/>
+   <ns1:parameter qname="ns15:lname" type="xsd:string"/>
+   <ns1:parameter qname="ns15:address" type="xsd:string"/>
+   <ns1:parameter qname="ns15:city" type="xsd:string"/>
+   <ns1:parameter qname="ns15:state" type="xsd:string"/>
+   <ns1:parameter qname="ns15:zipcode" type="xsd:string"/>
+   <ns1:parameter qname="ns15:persontype" type="xsd:string"/>
+   <ns1:parameter qname="ns15:department" type="xsd:string"/>
+   <ns1:parameter qname="ns15:officeHr" type="xsd:string"/>
+   <ns1:parameter qname="ns15:location" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="courseDetail" qname="ns16:courseDetail" returnQName="ns16:courseDetailReturn" returnType="ns17:Course" soapAction="" xmlns:ns16="http://connection" xmlns:ns17="http://entity">
+   <ns1:parameter qname="ns16:idcourse" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="updateCourse" qname="ns18:updateCourse" returnQName="ns18:updateCourseReturn" returnType="xsd:boolean" soapAction="" xmlns:ns18="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns18:idcourse" type="xsd:long"/>
+   <ns1:parameter qname="ns18:name" type="xsd:string"/>
+   <ns1:parameter qname="ns18:section" type="xsd:string"/>
+   <ns1:parameter qname="ns18:hours" type="xsd:string"/>
+   <ns1:parameter qname="ns18:loc" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="deleteCourse" qname="ns19:deleteCourse" returnQName="ns19:deleteCourseReturn" returnType="xsd:boolean" soapAction="" xmlns:ns19="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns19:idcourse" type="xsd:long"/>
+  </ns1:operation>
+  <ns1:operation name="createCourse" qname="ns20:createCourse" returnQName="ns20:createCourseReturn" returnType="xsd:boolean" soapAction="" xmlns:ns20="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns20:name" type="xsd:string"/>
+   <ns1:parameter qname="ns20:section" type="xsd:string"/>
+   <ns1:parameter qname="ns20:hours" type="xsd:string"/>
+   <ns1:parameter qname="ns20:loc" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="searchPerson" qname="ns21:searchPerson" returnQName="ns21:searchPersonReturn" returnType="ns22:Person" soapAction="" xmlns:ns21="http://connection" xmlns:ns22="http://entity">
+   <ns1:parameter qname="ns21:attributeName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns21:attributeValue" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="searchCourse" qname="ns23:searchCourse" returnQName="ns23:searchCourseReturn" returnType="ns24:Course" soapAction="" xmlns:ns23="http://connection" xmlns:ns24="http://entity">
+   <ns1:parameter qname="ns23:attributeName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns23:attributeValue" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="viewAllInstructors" qname="ns25:viewAllInstructors" returnQName="ns25:viewAllInstructorsReturn" returnType="ns26:Instructor" soapAction="" xmlns:ns25="http://connection" xmlns:ns26="http://entity"/>
+  <ns1:operation name="viewAllPerson" qname="ns27:viewAllPerson" returnQName="ns27:viewAllPersonReturn" returnType="ns28:Person" soapAction="" xmlns:ns27="http://connection" xmlns:ns28="http://entity"/>
+  <ns1:operation name="viewAllStudents" qname="ns29:viewAllStudents" returnQName="ns29:viewAllStudentsReturn" returnType="ns30:Person" soapAction="" xmlns:ns29="http://connection" xmlns:ns30="http://entity"/>
+  <ns1:parameter name="allowedMethods" value="deleteCourse viewAllPerson createCourse deleteInstructor createStudent personDetail searchCourse courseDetail deleteStudent updateCourse viewAllStudents updatePerson createInstructor assignCourseToInstructor getAdminPass viewAllInstructors unenrollStudent getAdminUname viewAllCourse removeReplaceInstructor searchPerson enrollStudent"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Service"/>
+  <ns1:parameter name="className" value="connection.Service"/>
+  <ns1:parameter name="wsdlServicePort" value="Service"/>
+  <ns1:parameter name="schemaQualified" value="http://entity,http://connection"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://connection"/>
+  <ns1:parameter name="wsdlServiceElement" value="ServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns31:Course" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:entity.Course" xmlns:ns31="http://entity"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns32:Person" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:entity.Person" xmlns:ns32="http://entity"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns33:Instructor" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:entity.Instructor" xmlns:ns33="http://entity"/>
+  <ns1:arrayMapping innerType="ns35:Instructor" languageSpecificType="java:entity.Instructor[]" qname="ns34:ArrayOf_tns1_Instructor" xmlns:ns34="http://connection" xmlns:ns35="http://entity"/>
+  <ns1:arrayMapping innerType="ns37:Person" languageSpecificType="java:entity.Person[]" qname="ns36:ArrayOf_tns1_Person" xmlns:ns36="http://connection" xmlns:ns37="http://entity"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>
